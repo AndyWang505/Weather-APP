@@ -1,0 +1,30 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  margin: 0;
+  font-family: "Noto Sans TC", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  line-height: 1.5;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+.banner {
+  background-image: url('https://cdn.pixabay.com/photo/2022/01/11/17/04/city-6931092_1280.jpg');
+}
+
+/* Scrollbar */
+.scrollbar-style::-webkit-scrollbar {
+    width: 8px;
+}
+
+.scrollbar-thumb-style::-webkit-scrollbar-thumb {
+  border-radius: 5px;
+  background-color: #bb6573;
+}
