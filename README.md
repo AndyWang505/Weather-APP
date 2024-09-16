@@ -32,12 +32,11 @@
     │  firebaseConfig.js
     │  index.css
     │  index.js
-    │  logo.svg
+    │  READMD.md
     │  reportWebVitals.js
     │  setupTests.js
     │  
     ├─api
-    │      auth.js
     │      weather.js
     │      
     ├─components
@@ -46,6 +45,10 @@
     │      ForecastWeather.jsx
     │      Loading.jsx
     │      Navbar.jsx
+    │      NotFound.jsx
+    │      
+    ├─Firebase
+    │      DatabaseService.js
     │      
     └─pages
             Home.jsx
