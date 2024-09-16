@@ -49,6 +49,7 @@ function Home() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
+      if(inputValue.trim() === '') return setError(true);
       setLoading(true);
       setError(false);
       setShowDropdown(false)
@@ -85,6 +86,7 @@ function Home() {
       const resForecast = await getForecast(inputValue);
       const dailyData = resForecast.data.list.filter((_, index) => index % 8 === 0);
       setForecastData(dailyData);
+      setInputValue(inputValue);
     } catch (error) {
       console.error(error);
       setError(true);
