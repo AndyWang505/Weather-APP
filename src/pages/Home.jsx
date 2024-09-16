@@ -14,7 +14,7 @@ import { getCurrentWeather, getForecast } from '../api/weather'
 // Firebase
 import { auth } from '../firebaseConfig';
 import { onAuthStateChanged } from 'firebase/auth';
-import { getSearchQuery, updateSearchQuery } from '../Firebase/DatabaseService';
+import { getSearchQuery, updateSearchQuery, deleteSearchQuery } from '../Firebase/DatabaseService';
 
 const now = new Date();
 const formattedDate = now.toLocaleString();
@@ -93,6 +93,25 @@ function Home() {
     }
   };
 
+  // 當點擊選單刪除時，刪除該筆資料
+  const handleDeleteRecord = async (searchQueryItem) => {
+    try {
+      // 參考 Firebase 資料庫中對應的記錄路徑
+      setLoading(true);
+      setError(false);
+      setShowDropdown(false);
+      // 刪除該筆搜尋紀錄
+      await deleteSearchQuery(searchQueryItem);
+      // 重新取得搜尋紀錄
+      const res = await getSearchQuery();
+      setSearchQuery(Object.values(res));
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   // 監聽點擊外層關閉選單
   const handleClickOutside = (event) => {
     if (menuRef.current && !menuRef.current.contains(event.target) && documentRef.current.contains(event.target)) {
@@ -166,7 +185,13 @@ function Home() {
                       >
                         <button className='w-full flex justify-between items-center py-2 pl-12 pr-4' type='button'>
                           {item.searchQuery}
-                          <RxCross2 className='hover:text-slate-300'/>
+                          <RxCross2 className='hover:text-slate-300'
+                            onClick={(e) => {
+                              // 避免同時觸發 handleSelectRecord
+                              e.stopPropagation();
+                              handleDeleteRecord(item.searchQuery);
+                            }}
+                          />
                         </button>
                       </li>
                     ))
