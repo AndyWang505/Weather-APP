@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react'
-import PropTypes from 'prop-types'
+import React, { useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
 import { CiCalendar } from "react-icons/ci";
 
 function ForecastWeather({ forecastData }) {
@@ -49,7 +49,7 @@ function ForecastWeather({ forecastData }) {
         }
       </ul>
     </div>
-  )
+  );
 }
 
 // 檢查接收到的 forecastData 型別
@@ -74,6 +74,6 @@ ForecastWeather.propTypes = {
       ).isRequired
     }).isRequired
   ).isRequired
-}
+};
 
-export default ForecastWeather
+export default ForecastWeather;

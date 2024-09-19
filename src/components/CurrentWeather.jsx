@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react'
-import PropTypes from 'prop-types'
+import React, { useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
 import { CiLocationOn } from "react-icons/ci";
 import { FaTemperatureArrowUp } from "react-icons/fa6";
 import { FaTemperatureArrowDown } from "react-icons/fa6";
@@ -49,7 +49,7 @@ function CurrentWeather({ currentData }) {
         </div>
       </div>
     </div>
-  )
+  );
 }
 
 // 檢查接收到的 currentData 型別
@@ -74,4 +74,4 @@ CurrentWeather.propTypes = {
   }).isRequired,
 };
 
-export default CurrentWeather
+export default CurrentWeather;

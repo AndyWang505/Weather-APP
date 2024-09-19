@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { FaSearch } from "react-icons/fa";
 import { RxCross2 } from "react-icons/rx";
@@ -10,7 +10,7 @@ import Footer from '../components/Footer';
 import Loading from '../components/Loading';
 import NotFound from '../components/NotFound';
 // API
-import { getCurrentWeather, getForecast } from '../api/weather'
+import { getCurrentWeather, getForecast } from '../api/weather';
 // Firebase
 import { auth } from '../firebaseConfig';
 import { onAuthStateChanged } from 'firebase/auth';
@@ -23,7 +23,7 @@ function Home() {
   // 資料狀態
   const [currentData, setCurrentData] = useState({});
   const [forecastData, setForecastData] = useState([]);
-  const [inputValue, setInputValue] = useState('')
+  const [inputValue, setInputValue] = useState('');
   const [searchQuery, setSearchQuery] = useState([]);
   // 特效狀態
   const [showDropdown, setShowDropdown] = useState(false);
@@ -43,7 +43,7 @@ function Home() {
       }
     });
     return () => unsubscribe();
-  }
+  };
 
   // 送出表單
   const handleSubmit = async (event) => {
@@ -52,7 +52,7 @@ function Home() {
       if(inputValue.trim() === '') return setError(true);
       setLoading(true);
       setError(false);
-      setShowDropdown(false)
+      setShowDropdown(false);
       // 新增或更新搜尋紀錄
       await updateSearchQuery(inputValue);
       // 重新取得搜尋紀錄
@@ -132,7 +132,7 @@ function Home() {
         setCurrentData({ ...resCurrent.data, cityName: '新竹市' });
         const resForecast = await getForecast('新竹市');
         const dailyData = resForecast.data.list.filter((_, index) => index % 8 === 0);
-        setForecastData(dailyData)
+        setForecastData(dailyData);
         const res = await getSearchQuery();
         setSearchQuery(Object.values(res));
       } catch (error) {
@@ -148,7 +148,7 @@ function Home() {
       // 移除監聽，防止 Memory Leak
       document.removeEventListener('mousedown', handleClickOutside);
     };
-  }, [])
+  }, []);
 
   return (
     // ref 用於監聽滑鼠點擊事件，判斷是否該關閉選單
@@ -218,7 +218,7 @@ function Home() {
       {/* 當 loading 時隱藏，避免 Footer 在資料載入前提早出現 */}
       {loading ? null : <Footer />}
     </main>
-  )
+  );
 }
 
-export default Home
+export default Home;

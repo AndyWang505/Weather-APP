@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 
 function Footer() {
   return (
@@ -7,7 +7,7 @@ function Footer() {
         Copyright © 2024 - AndyWang. <a href="https://github.com/AndyWang505/Weather-APP" className='text-blue-600' target="_blank" rel="noreferrer">source code</a>
       </p>
     </div>
-  )
+  );
 }
 
-export default Footer
+export default Footer;

@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { FaGoogle } from "react-icons/fa";
 // Firebase
@@ -26,7 +26,7 @@ function Navbar() {
         </button>
       </nav>
     </div>
-  )
+  );
 }
 
-export default Navbar
+export default Navbar;
