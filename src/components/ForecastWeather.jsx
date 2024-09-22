@@ -26,7 +26,9 @@ function ForecastWeather({ forecastData }) {
         {
           forecastData.map((item) => {
             // 主要是為了將 item.dt_txt 資料(2024-09-19 18:00:00) 轉為適合閱讀的星期
-            const date = new Date(item.dt_txt + ' UTC');
+            // IOS 裝置須符合 ISO 8601 標準，Z 表示 UTC 時區
+            const isoDateString = item.dt_txt.replace(' ', 'T') + 'Z';
+            const date = new Date(isoDateString);
             const dayOfWeek = daysOfWeek[date.getDay()];
             return (
               <li key={item.dt} className="flex md:flex-col items-center justify-around text-center pt-4 md:p-2 border-t border-neutral-400 md:border-0 transition-transform transform hover:-translate-y-2 hover:scale-105 hover:text-white">
