@@ -1,10 +1,10 @@
 ## 實作方法
 
-採用 React + Tailwind CSS 做開發
+使用 React + Tailwind CSS 開發，開發規範使用 ESLint + Airbnb，使用 ProtoType 檢查 props 型別。
 
 將專案開發拆成 畫面佈局、基本功能、進階功能部分
 
-開發方式，以畫面為優先，當撰寫好該區塊的畫面時，可以先撰寫簡單的邏輯，以呈現簡單資訊。
+開發流程，以畫面為優先，當撰寫好該區塊的畫面時，可以先撰寫簡單的邏輯，以呈現簡單資訊。
 
 ### 畫面佈局
 
@@ -37,7 +37,7 @@ PC、平板端畫面佈局構思，預期頂部提供 Input 提供搜尋城市�
 
 2. 將使用者搜尋過的城市儲存在 Firebase 中
 
-    查詢 Firebase Database 種類後決定使用較為輕量的 RealTime Database，用於儲存搜尋紀錄，參考 Firebase RealTime Database [官方文件](https://firebase.google.com/docs/database/web/read-and-write?authuser=0&hl=zh-tw) 作法，預期流程會是使用者輸入城市名稱提交後的同時新增到 Firebase，參考 Google 搜尋引擎做法，不希望有重複的紀錄，因此會檢查城市名稱是否已經存在，如果已存在則更新紀錄即可。
+    查詢 Firebase Database 種類後，決定使用較為輕量的 RealTime Database，用於儲存搜尋紀錄，參考 Firebase RealTime Database [官方文件](https://firebase.google.com/docs/database/web/read-and-write?authuser=0&hl=zh-tw) 作法，預期流程會是使用者輸入城市名稱提交後的同時新增到 Firebase，搜尋紀錄參考 Google 搜尋引擎做法，且不希望有重複的紀錄，因此會檢查城市名稱是否已經存在，如果已存在則更新紀錄即可，同時能夠對搜尋紀錄做刪除動作。
     調整 Firebase 存取規則，僅有已登入用戶能夠操作讀取及寫入等操作。
 
 3. 使用者可以透過過去搜尋過的城市來切換天氣資訊

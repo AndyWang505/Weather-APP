@@ -5,7 +5,12 @@ import pluginReact from "eslint-plugin-react";
 
 export default [
   {files: ["**/*.{js,mjs,cjs,jsx}"]},
-  {languageOptions: { globals: globals.browser }},
+  {languageOptions: { 
+    globals: {
+      ...globals.browser,
+      process: 'readonly',
+    } 
+  }},
   {rules: {
     "semi": ["error", "always"]
   }},

@@ -31,12 +31,12 @@ function Home() {
   const [error, setError] = useState(false);
   // 事件監聽
   const menuRef = useRef(null);
-  const documentRef = useRef(null);
+  const inputRef = useRef(null);
 
   const navigate = useNavigate();
 
   // 檢查是否已登入，若未登入則導向回 /login 頁面
-  const logout = () => {
+  const logoutCheck = () => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (!user) {
         navigate('/login');
@@ -49,7 +49,7 @@ function Home() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      if(inputValue.trim() === '') return setError(true);
+      if (inputValue.trim() === '') return setError(true);
       setLoading(true);
       setError(false);
       setShowDropdown(false);
@@ -116,8 +116,13 @@ function Home() {
 
   // 監聽點擊外層關閉選單
   const handleClickOutside = (event) => {
-    if (menuRef.current && !menuRef.current.contains(event.target) && documentRef.current.contains(event.target)) {
+    // 如果點擊的是選單以外的元素則關閉
+    if (menuRef.current && !menuRef.current.contains(event.target)) {
       setShowDropdown(false);
+    }
+    // 如果點擊的是 Input，則開啟選單
+    if (inputRef.current && inputRef.current.contains(event.target)) {
+      setShowDropdown(true);
     }
   };
 
@@ -125,7 +130,7 @@ function Home() {
   useEffect(() => {
     const fetchWeatherData = async () => {
       try {
-        logout();
+        logoutCheck();
         setLoading(true);
         // 預設載入資料
         const resCurrent = await getCurrentWeather('新竹市');
@@ -133,6 +138,7 @@ function Home() {
         const resForecast = await getForecast('新竹市');
         const dailyData = resForecast.data.list.filter((_, index) => index % 8 === 0);
         setForecastData(dailyData);
+        // 取得搜尋紀錄
         const res = await getSearchQuery();
         setSearchQuery(Object.values(res));
       } catch (error) {
@@ -152,7 +158,7 @@ function Home() {
 
   return (
     // ref 用於監聽滑鼠點擊事件，判斷是否該關閉選單
-    <main className={`bg-slate-800 ${loading ? 'h-screen' : null}`} ref={documentRef}>
+    <main className={`bg-slate-800 ${loading ? 'h-screen' : null}`}>
       <Loading loading={loading} />
       <Navbar />
       {/* 避免出現搜尋無結果提示時，因畫面沒有元素而無法撐出高度 */}
@@ -170,7 +176,7 @@ function Home() {
                 placeholder='輸入想查詢的城市'
                 value={inputValue}
                 onChange={(e) => setInputValue(e.target.value)}
-                onClick={() => setShowDropdown(true)}
+                ref={inputRef}
               />
             </label>
           </form>
