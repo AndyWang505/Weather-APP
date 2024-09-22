@@ -57,7 +57,9 @@ function Home() {
       await updateSearchQuery(inputValue);
       // 重新取得搜尋紀錄
       const res = await getSearchQuery();
-      setSearchQuery(Object.values(res));
+      // 依據 timestamp 時間排降序
+      const sortedSearchQuery = Object.values(res).sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
+      setSearchQuery(sortedSearchQuery);
       // 儲存資料狀態
       const resCurrent = await getCurrentWeather(inputValue);
       setCurrentData({ ...resCurrent.data, cityName: inputValue });
@@ -98,19 +100,21 @@ function Home() {
   // 當點擊選單刪除時，刪除該筆資料
   const handleDeleteRecord = async (searchQueryItem) => {
     try {
-      // 參考 Firebase 資料庫中對應的記錄路徑
-      setLoading(true);
       setError(false);
-      setShowDropdown(false);
       // 刪除該筆搜尋紀錄
       await deleteSearchQuery(searchQueryItem);
       // 重新取得搜尋紀錄
       const res = await getSearchQuery();
-      setSearchQuery(Object.values(res));
+      // 如果紀錄已清空，則傳入空陣列
+      if(res === null) {
+        setSearchQuery([]);
+        return;
+      }
+      // 依據 timestamp 時間排降序
+      const sortedSearchQuery = Object.values(res).sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
+      setSearchQuery(sortedSearchQuery);
     } catch (error) {
       console.error(error);
-    } finally {
-      setLoading(false);
     }
   };
 
@@ -140,7 +144,9 @@ function Home() {
         setForecastData(dailyData);
         // 取得搜尋紀錄
         const res = await getSearchQuery();
-        setSearchQuery(Object.values(res));
+        // 依據 timestamp 時間排降序
+        const sortedSearchQuery = Object.values(res).sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
+        setSearchQuery(sortedSearchQuery);
       } catch (error) {
         console.error(error);
       } finally {
