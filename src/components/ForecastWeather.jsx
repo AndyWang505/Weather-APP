@@ -1,23 +1,12 @@
-import React, { useEffect, useState } from 'react';
-import PropTypes from 'prop-types';
+import React from 'react';
 import { CiCalendar } from "react-icons/ci";
 
 function ForecastWeather({ forecastData }) {
-  const [isVisible, setIsVisible] = useState(true);
-
   // 用於將 Date 轉換為星期
   const daysOfWeek = ['星期日', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六'];
 
-  useEffect(() => {
-    setIsVisible(false);
-    const timer = setTimeout(() => {
-      setIsVisible(true);
-    }, 100);
-    return () => clearTimeout(timer);
-  }, [forecastData]);
-
   return (
-    <div className={`w-full bg-gradient-to-tr from-zinc-600 via-gray-600 text-neutral-200 p-3 md:p-6 rounded-xl shadow-xl hover:scale-105 ${isVisible ? 'animate-zoom-in' : 'opacity-0'}`}>
+    <div className={`w-full bg-gradient-to-tr from-zinc-600 via-gray-600 text-neutral-200 p-3 md:p-6 rounded-xl shadow-xl hover:scale-105 animate-zoom-in`}>
       <h2 className='flex items-center md:border-b border-neutral-400 pb-4 md:mb-4'>
         <CiCalendar className='mr-1' />
         未來五天天氣預報
@@ -53,29 +42,5 @@ function ForecastWeather({ forecastData }) {
     </div>
   );
 }
-
-// 檢查接收到的 forecastData 型別
-ForecastWeather.propTypes = {
-  forecastData: PropTypes.arrayOf(
-    PropTypes.shape({
-      dt: PropTypes.number.isRequired,
-      dt_txt: PropTypes.string.isRequired,
-      main: PropTypes.shape({
-        temp: PropTypes.number.isRequired,
-        humidity: PropTypes.number.isRequired,
-        feels_like: PropTypes.number.isRequired,
-        temp_min: PropTypes.number.isRequired,
-        temp_max: PropTypes.number.isRequired
-      }).isRequired,
-      weather: PropTypes.arrayOf(
-        PropTypes.shape({
-          icon: PropTypes.string.isRequired,
-          description: PropTypes.string.isRequired,
-          main: PropTypes.string.isRequired
-        }).isRequired
-      ).isRequired
-    }).isRequired
-  ).isRequired
-};
 
 export default ForecastWeather;

@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
 function Loading({ loading = false }) {
   if (!loading) return null;
@@ -11,9 +10,5 @@ function Loading({ loading = false }) {
     </div>
   );
 }
-
-Loading.propTypes = {
-  loading: PropTypes.bool,
-};
 
 export default Loading;
