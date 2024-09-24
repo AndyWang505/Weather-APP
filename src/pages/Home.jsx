@@ -11,6 +11,9 @@ import Loading from '../components/Loading';
 import NotFound from '../components/NotFound';
 // API
 import { getCurrentWeather, getForecast } from '../api/weather';
+// Helper
+import { getSortedQuery } from '../helper/getSortedQuery';
+import { getDailyData } from '../helper/getDailyData';
 // Firebase
 import { auth } from '../firebaseConfig';
 import { onAuthStateChanged } from 'firebase/auth';
@@ -58,14 +61,12 @@ function Home() {
       // 重新取得搜尋紀錄
       const res = await getSearchQuery();
       // 依據 timestamp 時間排降序
-      const sortedSearchQuery = Object.values(res).sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
-      setSearchQuery(sortedSearchQuery);
+      setSearchQuery(getSortedQuery(res));
       // 儲存資料狀態
       const resCurrent = await getCurrentWeather(inputValue);
       setCurrentData({ ...resCurrent.data, cityName: inputValue });
       const resForecast = await getForecast(inputValue);
-      const dailyData = resForecast.data.list.filter((_, index) => index % 8 === 0);
-      setForecastData(dailyData);
+      setForecastData(getDailyData(resForecast));
     } catch (error) {
       console.error(error);
       setError(true);
@@ -86,8 +87,7 @@ function Home() {
       const resCurrent = await getCurrentWeather(inputValue);
       setCurrentData({ ...resCurrent.data, cityName: inputValue });
       const resForecast = await getForecast(inputValue);
-      const dailyData = resForecast.data.list.filter((_, index) => index % 8 === 0);
-      setForecastData(dailyData);
+      setForecastData(getDailyData(resForecast));
       setInputValue(inputValue);
     } catch (error) {
       console.error(error);
@@ -111,8 +111,7 @@ function Home() {
         return;
       }
       // 依據 timestamp 時間排降序
-      const sortedSearchQuery = Object.values(res).sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
-      setSearchQuery(sortedSearchQuery);
+      setSearchQuery(getSortedQuery(res));
     } catch (error) {
       console.error(error);
     }
@@ -140,13 +139,11 @@ function Home() {
         const resCurrent = await getCurrentWeather('新竹市');
         setCurrentData({ ...resCurrent.data, cityName: '新竹市' });
         const resForecast = await getForecast('新竹市');
-        const dailyData = resForecast.data.list.filter((_, index) => index % 8 === 0);
-        setForecastData(dailyData);
+        setForecastData(getDailyData(resForecast));
         // 取得搜尋紀錄
         const res = await getSearchQuery();
         // 依據 timestamp 時間排降序
-        const sortedSearchQuery = Object.values(res).sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
-        setSearchQuery(sortedSearchQuery);
+        setSearchQuery(getSortedQuery(res));
       } catch (error) {
         console.error(error);
       } finally {
