@@ -10,22 +10,9 @@
 ### 資料夾結構
 
 ```
-│  .env
-│  .gitignore
-│  eslint.config.mjs
-│  package-lock.json
-│  package.json
-│  README.md
-│  tailwind.config.js
-│          
-├─public
-│      favicon.ico
-│      index.html
-│      logo192.png
-│      logo512.png
-│      manifest.json
-│      robots.txt
-│      
+       
+├─public    
+│
 └─src
     │  App.jsx
     │  App.test.js
@@ -35,24 +22,28 @@
     │  READMD.md
     │  reportWebVitals.js
     │  setupTests.js
-    │  
+    │
     ├─api
-    │      weather.js
+    │  weather.js
     │      
     ├─components
-    │      CurrentWeather.jsx
-    │      Footer.jsx
-    │      ForecastWeather.jsx
-    │      Loading.jsx
-    │      Navbar.jsx
-    │      NotFound.jsx
+    │  CurrentWeather.jsx
+    │  Footer.jsx
+    │  ForecastWeather.jsx
+    │  Loading.jsx
+    │  Navbar.jsx
+    │  NotFound.jsx
     │      
     ├─Firebase
-    │      DatabaseService.js
+    │ DatabaseService.js
+    │
+    ├─helper
+    │ getDailyData.js
+    │ getSortedQuery.js
     │      
     └─pages
-            Home.jsx
-            Login.jsx
+        Home.jsx
+        Login.jsx
 ```
 
 ### 功能
