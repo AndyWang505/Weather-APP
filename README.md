@@ -78,6 +78,4 @@ Image
 
 * ESLint
 
-* Prop-Types
-
 * Firebase
