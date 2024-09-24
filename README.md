@@ -35,11 +35,11 @@
     │  NotFound.jsx
     │      
     ├─Firebase
-    │ DatabaseService.js
+    │  DatabaseService.js
     │
     ├─helper
-    │ getDailyData.js
-    │ getSortedQuery.js
+    │  getDailyData.js
+    │  getSortedQuery.js
     │      
     └─pages
         Home.jsx
