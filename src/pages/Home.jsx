@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { FaSearch } from "react-icons/fa";
 import { RxCross2 } from "react-icons/rx";
+import { IoMdTime } from "react-icons/io";
 // Components
 import CurrentWeather from '../components/CurrentWeather';
 import ForecastWeather from '../components/ForecastWeather';
@@ -183,20 +184,23 @@ function Home() {
               />
             </label>
           </form>
-          <div className='left-0 w-full max-w-3xl mx-auto mt-1 bg-slate-900 rounded-md'>
+          <div className='relative left-0 w-full max-w-3xl mx-auto mt-1 bg-slate-900 rounded-md'>
             {
               // 必須在 showDropdown 狀態為 true，以及 searchQuery 有值的情況下才能顯示選單
               showDropdown && searchQuery && (
                 // ref 用於監聽是否點擊到 Input 或選單，判斷是否該關閉選單
-                <ul className='max-h-[180px] overflow-auto scrollbar-style scrollbar-thumb-style' ref={menuRef}>
+                <ul className='absolute z-10 w-full bg-slate-800 max-h-[180px] border-2 border-neutral-500 rounded-md overflow-auto scrollbar-style scrollbar-thumb-style' ref={menuRef}>
                   {
                     searchQuery?.map((item, index) => (
-                      <li key={index} className='text-neutral-400 text-base md:text-xl hover:bg-slate-700 rounded-md'
+                      <li key={index} className='text-neutral-400 text-base md:text-xl hover:bg-slate-700 rounded-md hover:text-slate-300'
                         onClick={() => handleSelectRecord(item.searchQuery)}
                       >
-                        <button className='w-full flex justify-between items-center py-2 pl-12 pr-4' type='button'>
-                          {item.searchQuery}
-                          <RxCross2 className='hover:text-slate-300'
+                        <button className='w-full flex justify-between items-center py-2 pl-4 pr-4' type='button'>
+                          <div className='flex items-center'>
+                            <IoMdTime className='mr-4' />
+                            {item.searchQuery}
+                          </div>
+                          <RxCross2
                             onClick={(e) => {
                               // 避免同時觸發 handleSelectRecord
                               e.stopPropagation();
