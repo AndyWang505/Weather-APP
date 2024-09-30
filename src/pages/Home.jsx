@@ -49,6 +49,14 @@ function Home() {
     return () => unsubscribe();
   };
 
+  // 儲存資料狀態
+  const storeDataState = async function() {
+    const resCurrent = await getCurrentWeather(inputValue);
+    setCurrentData({ ...resCurrent.data, cityName: inputValue });
+    const resForecast = await getForecast(inputValue);
+    setForecastData(getDailyData(resForecast));
+  }
+
   // 送出表單
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -64,10 +72,7 @@ function Home() {
       // 依據 timestamp 時間排降序
       setSearchQuery(getSortedQuery(res));
       // 儲存資料狀態
-      const resCurrent = await getCurrentWeather(inputValue);
-      setCurrentData({ ...resCurrent.data, cityName: inputValue });
-      const resForecast = await getForecast(inputValue);
-      setForecastData(getDailyData(resForecast));
+      await storeDataState();
     } catch (error) {
       console.error(error);
       setError(true);
@@ -85,10 +90,7 @@ function Home() {
       // 新增或更新搜尋紀錄
       await updateSearchQuery(inputValue);
       // 儲存資料狀態
-      const resCurrent = await getCurrentWeather(inputValue);
-      setCurrentData({ ...resCurrent.data, cityName: inputValue });
-      const resForecast = await getForecast(inputValue);
-      setForecastData(getDailyData(resForecast));
+      await storeDataState();
       setInputValue(inputValue);
     } catch (error) {
       console.error(error);
