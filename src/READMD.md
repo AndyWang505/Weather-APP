@@ -56,7 +56,7 @@ PC、平板端畫面佈局構思，預期頂部提供 Input 提供搜尋城市�
 
 1. eslint 出現 prop-types 警告原因：因為 eslint-plugin-react 禁止在 React 元件中定義缺少 props 驗證，因此出現警告。無論你如何定義 props 類型，這個規則都會對它們進行驗證。
 
-        解決方法：加入 `"react/prop-types": "off"` 的規則，並調整到 pluginReact 載入後。
+    解決方法：加入 `"react/prop-types": "off"` 的規則，並調整到 pluginReact 載入後。
 
 2. 移除不必要的 setTimeOut function (原用於延遲動畫載入)
 
@@ -68,4 +68,4 @@ PC、平板端畫面佈局構思，預期頂部提供 Input 提供搜尋城市�
 
 2. 將 Home.jsx 儲存資料狀態邏輯抽出，以利維護和擴充。
 
-        最後沒使用 hook 原因：不希望 hook 跟 api 有依賴關係，增加程式碼維護複雜度
+    最後沒使用 hook 原因：不希望 hook 跟 api 有依賴關係，增加程式碼維護複雜度
