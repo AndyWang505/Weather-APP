@@ -1,6 +1,6 @@
 import React from 'react';
 
-function DailyWeather({ dayOfWeek, item}) {
+function DailyWeather({ dayOfWeek, item }) {
   return (
     <li key={item.dt} className="flex md:flex-col items-center justify-around text-center pt-4 md:p-2 border-t border-neutral-400 md:border-0 transition-transform transform hover:-translate-y-2 hover:scale-105 hover:text-white">
       <div>

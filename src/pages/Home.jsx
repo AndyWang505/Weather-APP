@@ -115,7 +115,7 @@ function Home() {
       // 重新取得搜尋紀錄
       const res = await getSearchQuery();
       // 如果紀錄已清空，則傳入空陣列
-      if(res === null) {
+      if (res === null) {
         setSearchQuery([]);
         return;
       }
