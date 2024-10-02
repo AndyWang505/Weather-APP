@@ -69,3 +69,5 @@ PC、平板端畫面佈局構思，預期頂部提供 Input 提供搜尋城市�
 2. 將 Home.jsx 儲存資料狀態邏輯抽出，以利維護和擴充。
 
     最後沒使用 hook 原因：不希望 hook 跟 api 有依賴關係，增加程式碼維護複雜度
+
+3. 將 ForecastWeather <li> 每天天氣資訊抽出，改寫成 DailyWeather 元件，以利維護及使用。
