@@ -28,6 +28,7 @@
     │      
     ├─components
     │  CurrentWeather.jsx
+    │  DailyWeather.jsx
     │  Footer.jsx
     │  ForecastWeather.jsx
     │  Loading.jsx
