@@ -4,21 +4,21 @@ import { FaSearch } from "react-icons/fa";
 import { RxCross2 } from "react-icons/rx";
 import { IoMdTime } from "react-icons/io";
 // Components
-import CurrentWeather from '../components/CurrentWeather';
-import ForecastWeather from '../components/ForecastWeather';
-import Navbar from '../components/Navbar';
-import Footer from '../components/Footer';
-import Loading from '../components/Loading';
-import NotFound from '../components/NotFound';
+import CurrentWeather from '../components/CurrentWeather.tsx';
+import ForecastWeather from '../components/ForecastWeather.tsx';
+import Navbar from '../components/Navbar.tsx';
+import Footer from '../components/Footer.tsx';
+import Loading from '../components/Loading.tsx';
+import NotFound from '../components/NotFound.tsx';
 // API
-import { getCurrentWeather, getForecast } from '../api/weather';
+import { getCurrentWeather, getForecast } from '../api/weather.ts';
 // Helper
-import { getSortedQuery } from '../helper/getSortedQuery';
-import { getDailyData } from '../helper/getDailyData';
+import { getSortedQuery } from '../helper/getSortedQuery.ts';
+import { getDailyData } from '../helper/getDailyData.ts';
 // Firebase
-import { auth } from '../firebaseConfig';
+import { auth } from '../firebaseConfig.ts';
 import { onAuthStateChanged } from 'firebase/auth';
-import { getSearchQuery, updateSearchQuery, deleteSearchQuery } from '../Firebase/DatabaseService';
+import { getSearchQuery, updateSearchQuery, deleteSearchQuery } from '../Firebase/DatabaseService.ts';
 
 const now = new Date();
 const formattedDate = now.toLocaleString();

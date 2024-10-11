@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { FaGoogle } from "react-icons/fa";
 // Firebase
 import { signOut } from 'firebase/auth';
-import { auth } from '../firebaseConfig';
+import { auth } from '../firebaseConfig.ts';
 
 function Navbar() {
   const navigate = useNavigate();

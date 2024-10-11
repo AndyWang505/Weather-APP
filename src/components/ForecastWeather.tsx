@@ -1,6 +1,6 @@
 import React from 'react';
 import { CiCalendar } from "react-icons/ci";
-import DailyWeather from './DailyWeather';
+import DailyWeather from './DailyWeather.tsx';
 
 function ForecastWeather({ forecastData }) {
   // 用於將 Date 轉換為星期
